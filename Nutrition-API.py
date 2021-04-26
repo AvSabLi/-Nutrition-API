@@ -149,3 +149,5 @@ with open("Nutrition List2.txt", "w") as f:
         f.write("---------------\n")
 print("Your list has been printed to a file. Thanks for using the Nutritionix API!")
 
+git config --global user.email "sabrina.sabir213@gmail.com"
+git config --global user.name "sabrinasabir213"
