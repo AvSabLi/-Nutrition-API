@@ -1,6 +1,7 @@
-hi
+
 import requests, json, sys, time
 from pprint import pprint
+import axios from "axios";
 
 # This function includes the introduction information for the API
 def intro():
@@ -49,6 +50,28 @@ def restaurant():
             )
 
         foodItem(n)
+
+def recipe():
+    while (
+        True
+    ):
+        print("please enter what food item you would like to cook, and we will provide the recipe")
+        recipe = input(
+            "recipe name or (q)uit>"
+        )
+        if recipe.lower() == "q":
+            break
+
+        url = f"https://api.edamam.com/search?q={recipe}&app_id=${62fd6c39}&app_key=${5f0e27adae50eb576e4aebe320bbefe2}"
+
+        response = requests.get(url)
+        if r.status_code == 401:
+            logger.error("invalid recipe api key")
+            raise InvalidRecipeApiKey 
+
+        recipeData = json.loads(response.text)
+        r = recipeData
+
 
 
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
@@ -125,3 +148,4 @@ with open("Nutrition List2.txt", "w") as f:
         f.write(str(item["protein"] + "\n"))
         f.write("---------------\n")
 print("Your list has been printed to a file. Thanks for using the Nutritionix API!")
+
