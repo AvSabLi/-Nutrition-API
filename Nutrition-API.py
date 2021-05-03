@@ -1,9 +1,7 @@
 import requests, json, sys, time
 from pprint import pprint
-from axios import axios
 
 
-# sabrina test change
 # This function includes the introduction information for the API
 def intro():
     print("Welcome to the Nutritionix API Service.")
@@ -53,24 +51,28 @@ def restaurant():
         foodItem(n)
 
 
-def recipe():
-    while True:
-        print(
-            "please enter what food item you would like to cook, and we will provide the recipe"
-        )
-        recipe = input("recipe name or (q)uit>")
-        if recipe.lower() == "q":
-            break
+# def recipe():
+#     while True:
+#         print(
+#             "please enter what food item you would like to cook, and we will provide the recipe"
+#         )
+#         recipe = input("recipe name or (q)uit>")
+#         if recipe.lower() == "q":
+#             break
 
-        url = f"https://api.edamam.com/search?q={recipe}&app_id=$62fd6c39&app_key=$5f0e27adae50eb576e4aebe320bbefe2"
+#         url = f"https://api.edamam.com/search?q={recipe}&app_id=$62fd6c39&app_key=$5f0e27adae50eb576e4aebe320bbefe2"
 
-        response = requests.get(url)
-        if r.status_code == 401:
-            logger.error("invalid recipe api key")
-            raise InvalidRecipeApiKey
+#         response = requests.get(url)
+#         response.raise_for_status()  #check for errors
 
-        recipeData = json.loads(response.text)
-        r = recipeData
+#         recipeData = json.loads(response.text)
+#         r = recipeData["hits"]
+#         for item in r:
+#             print(
+#                 item["title"]["ingr"]
+#             )
+
+#         foodItem(r)
 
 
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
