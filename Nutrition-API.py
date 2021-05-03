@@ -1,4 +1,3 @@
-import random
 import requests, json, sys, time
 from pprint import pprint
 from axios import axios
