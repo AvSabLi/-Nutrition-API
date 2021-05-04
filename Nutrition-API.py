@@ -124,6 +124,8 @@ def foodItem(foodList):
             )  # this print statement will print the nutritional information for the food item selected
 
 
+# Sabrina put code for nutrition facts here for recipes
+
 # this is the main program
 intro()
 myList = []
