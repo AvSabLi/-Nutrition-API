@@ -25,6 +25,8 @@ def intro():
     print("---------------")
 
 
+# need to ask if dine in or eat out with related code
+
 # this function asks the player which restaurants data they want to look at and returns food items sold at the restaurant selected
 def restaurant():
     while (
