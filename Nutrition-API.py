@@ -1,12 +1,6 @@
 import requests, json, sys, time
 from pprint import pprint
-<<<<<<< HEAD
 import pandas
-
-# from axios import axios
-=======
->>>>>>> 4651e08bbe9b6214684fec60f591570a813d5d5f
-
 
 # This function includes the introduction information for the API
 def intro():
@@ -17,7 +11,11 @@ def intro():
     print("Hi " + myName + "!")
     time.sleep(1)
     print(
-        "With this API service you can search food item's nutritional information from a selected restaurant or food brand. "
+        "With this program you can choose recipes to either cook at your home or find menu items from a restaurant to dine out. "
+    )
+    time.sleep(3)
+    print(
+        " Once you have selected your dining option, you can search food item's nutritional information from a selected restaurant or recipe."
     )
     time.sleep(3)
     print(
