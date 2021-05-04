@@ -153,3 +153,24 @@ with open("Nutrition List2.txt", "w") as f:
         f.write(str(item["protein"] + "\n"))
         f.write("---------------\n")
 print("Your list has been printed to a file. Thanks for using the Nutritionix API!")
+
+# google URL code
+def function1():
+    print("Which location would you like to search?")
+    searchLocation = input()
+    return searchLocation
+
+
+def function2(searchLocation):
+    # Fetch the information of that restaurant
+    map_url = "https://www.google.com/maps/search/?api=1&query=" + searchLocation
+
+    # Print message
+    print("To view " + searchLocation + " in Google Maps, go to " + map_url)
+    print("-----------------------------------------")
+    return map_url
+
+
+# main program
+userSearchLocation = function1()
+userMapsUrl = function2(userSearchLocation)
