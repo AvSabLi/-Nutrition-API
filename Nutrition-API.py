@@ -1,11 +1,13 @@
 import requests, json, sys, time
 from pprint import pprint
+<<<<<<< HEAD
 import pandas
 
 # from axios import axios
+=======
+>>>>>>> 4651e08bbe9b6214684fec60f591570a813d5d5f
 
 
-# sabrina test change
 # This function includes the introduction information for the API
 def intro():
     print("Welcome to the Nutritionix API Service.")
@@ -64,15 +66,21 @@ def recipe():
         if recipe.lower() == "q":
             break
 
-        url = f"https://api.edamam.com/search?q={recipe}&app_id=$62fd6c39&app_key=$5f0e27adae50eb576e4aebe320bbefe2"
+        url = f"https://api.edamam.com/search?q={recipe}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
 
         response = requests.get(url)
-        if r.status_code == 401:
-            logger.error("invalid recipe api key")
-            raise InvalidRecipeApiKey
+        response.raise_for_status()  # check for errors
 
         recipeData = json.loads(response.text)
-        r = recipeData
+        r = recipeData["hits"]
+        for item in r:
+            print(item["recipe"]["label"])
+            for ingredient in item["recipe"]["ingredientLines"]:
+                print(ingredient)
+
+            break
+
+        foodItem(r)
 
 
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
@@ -121,6 +129,8 @@ intro()
 myList = []
 time.sleep(1)
 restaurant()
+recipe()
+run()
 print("Here are the nutrition facts for the food items you selected:\n")
 time.sleep(2)
 print("---------------")
@@ -239,3 +249,24 @@ with open("Nutrition List2.txt", "w") as f:
         f.write(str(item["protein"] + "\n"))
         f.write("---------------\n")
 print("Your list has been printed to a file. Thanks for using the Nutritionix API!")
+
+# google URL code
+def function1():
+    print("Which location would you like to search?")
+    searchLocation = input()
+    return searchLocation
+
+
+def function2(searchLocation):
+    # Fetch the information of that restaurant
+    map_url = "https://www.google.com/maps/search/?api=1&query=" + searchLocation
+
+    # Print message
+    print("To view " + searchLocation + " in Google Maps, go to " + map_url)
+    print("-----------------------------------------")
+    return map_url
+
+
+# main program
+userSearchLocation = function1()
+userMapsUrl = function2(userSearchLocation)
