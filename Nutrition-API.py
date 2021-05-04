@@ -1,6 +1,8 @@
 import requests, json, sys, time
 from pprint import pprint
-from axios import axios
+import pandas
+
+# from axios import axios
 
 
 # sabrina test change
@@ -127,6 +129,96 @@ print(" ")
 with open("Nutrition List2.txt", "w") as f:
     # This for loops prints all of the food items and their nutritional information at once, once the user quits out of the program
     for item in myList:
+        # details = {"Item Name": [item["item_name"]]}
+        # data = {"name": ["muffin", "burger"], "calories": [100, 200]}
+        # dframe = pd.DataFrame(data)
+
+        # dframe = pd.DataFrame(
+        #     myList,
+        #     columns=[
+        #         "Item Name",
+        #         "Calories",
+        #         "Calories from Fat",
+        #         "Total Fat",
+        #         "Saturated Fat",
+        #         "Cholesterol",
+        #         "Sugar",
+        #         "Protein",
+        #     ],
+        #     facts=["item_name", "nf_calories"],
+        # )
+
+        # print(dframe)
+
+        # avani
+        foodData = [
+            [
+                "Item Name",
+                "Calories",
+                "Calories from Fat",
+                "Total Fat",
+                "Saturated Fat",
+                "Cholesterol",
+                "Sugar",
+                "Protein",
+            ],
+            [
+                item["name"],
+                item["calories"],
+                item["calories from fat"],
+                item["total fat"],
+                item["saturated fat"],
+                item["cholesterol"],
+                item["sugars"],
+                item["protein"],
+            ],
+        ]
+        headerY = [
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+        ]
+        headerX = [
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+        ]
+        print(pandas.DataFrame(foodData, headerY, headerX))
+        # print(_________________)
+
+        # df.describe()
+
+        # data = [
+        # item["name"],
+        # item["calories"],
+        # item["calories from fat"],
+        # item["total fat"],
+        # item["saturated fat"],
+        # item["cholesterol"],
+        # item["sugars"],
+        # item["protein"],
+        # ]
+        # headers = [
+        # "calories",
+        # "calories from fat",
+        # "total fat",
+        # "saturated fat",
+        # "cholesterol",
+        # "sugars",
+        # "protein",
+        # ]
+        # print(pandas.DataFrame(data, headers, headers))
+
         print(item["name"])
         print(item["calories"])
         print(item["calories from fat"])
