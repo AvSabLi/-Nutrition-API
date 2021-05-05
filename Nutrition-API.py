@@ -25,7 +25,7 @@ def intro():
     time.sleep(3)
     print("          ")
     print(
-        "Or if you decide to dine out...\n  You can search Mcdonald's, for example, and select McNuggets.\n Then, information including calories, fats, cholesterol, sugar and protein  for McNuggets will be given to you."
+        "Or if you decide to dine out...\n  You can search Mcdonald's, for example, and select McNuggets.\n Then, information including calories, fats, cholesterol, sugar and protein for McNuggets will be given to you."
     )
     print("          ")
     time.sleep(3)
