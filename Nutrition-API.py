@@ -6,31 +6,32 @@ import pandas
 # This function includes the introduction information for the API
 def intro():
     print("Welcome to the Nutritionix API Service.")
-    time.sleep(1)  # time.sleep adds time before the next line of code is printed
+    # time.sleep(1)  # time.sleep adds time before the next line of code is printed
     print("What is your name?")
     myName = input()
     print("Hi " + myName + "!")
-    time.sleep(1)
-    print(
-        "With this program you can either choose recipes to cook at home and eat in, or find menu items from a restaurant and dine out. "
-    )
-    time.sleep(3)
-    print(
-        " Once you have selected your dining option, you will either get a full recipe and related nutritional information with the dine in option, or the nutritional information from a menu item at a selected restaurant."
-    )
-    time.sleep(3)
-    print("          ")
-    print(
-        "If you decide to dine in...\n You can search pizza, for example, and have an entire recipe of how to make pizza in your kitchen from scratch!"
-    )
-    time.sleep(3)
-    print("          ")
-    print(
-        "Or if you decide to dine out...\n  You can search Mcdonald's, for example, and select McNuggets.\n Then, information including calories, fats, cholesterol, sugar and protein for McNuggets will be given to you."
-    )
-    print("          ")
-    time.sleep(3)
-    print("Now, " + myName + ", Would you like to eat in or dine out?")
+    # time.sleep(1)
+    # print(
+    #     "With this program you can either choose recipes to cook at home and eat in, or find menu items from a restaurant and dine out. "
+    # )
+    # time.sleep(3)
+    # print(
+    #     " Once you have selected your dining option, you will either get a full recipe and related nutritional information with the dine in option, or the nutritional information from a menu item at a selected restaurant."
+    # )
+    # time.sleep(3)
+    # print("          ")
+    # print(
+    #     "If you decide to dine in...\n You can search pizza, for example, and have an entire recipe of how to make pizza in your kitchen from scratch!"
+    # )
+    # time.sleep(3)
+    # print("          ")
+    # print(
+    #     "Or if you decide to dine out...\n  You can search Mcdonald's, for example, and select McNuggets.\n Then, information including calories, fats, cholesterol, sugar and protein for McNuggets will be given to you."
+    # )
+    # print("          ")
+    # time.sleep(3)
+    print("Now, " + myName + ", would you like to eat in or dine out?")
+    dineInOrOut = input()
     print("---------------")
 
 
@@ -91,10 +92,12 @@ def recipe():
 
         foodItem(r)
 
-        print("Which of the following recipes would you like to use? We will provide nutritional facts for that recipe.")
+        print(
+            "Which of the following recipes would you like to use? We will provide nutritional facts for that recipe."
+        )
         chosenRecipe = input()
 
-        url:f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
+        url: f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
 
 
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
@@ -156,37 +159,37 @@ with open("Nutrition List2.txt", "w") as f:
     for item in myList:
 
         foodData = [
-            [
-                ["Item Name:", item["name"]],
-                ["Calories:", item["calories"]],
-                ["Calories from Fat:", item["calories from fat"]],
-                ["Total Fat:", item["total fat"]],
-                ["Saturated Fat:", item["saturated fat"]],
-                ["Cholesterol", item["cholesterol"]],
-                ["Sugar", item["sugars"]],
-                ["Protein", item["protein"]],
-            ],
-            # [
-            #     item["name"],
-            #     item["calories"],
-            #     item["calories from fat"],
-            #     item["total fat"],
-            #     item["saturated fat"],
-            #     item["cholesterol"],
-            #     item["sugars"],
-            #     item["protein"],
-            # ],
+            ["Item Name:", item["name"]],
+            ["Calories:", item["calories"]],
+            ["Calories from Fat:", item["calories from fat"]],
+            ["Total Fat:", item["total fat"]],
+            ["Saturated Fat:", item["saturated fat"]],
+            ["Cholesterol:", item["cholesterol"]],
+            ["Sugar:", item["sugars"]],
+            ["Protein:", item["protein"]],
         ]
+        # [
+        #     item["name"],
+        #     item["calories"],
+        #     item["calories from fat"],
+        #     item["total fat"],
+        #     item["saturated fat"],
+        #     item["cholesterol"],
+        #     item["sugars"],
+        #     item["protein"],
+        # ],
+        # columns
         headerY = [
             "  ",
             "  ",
-            # # "  ",
-            # # "  ",
-            # # "  ",
-            # # "  ",
-            # # "  ",
-            # # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
         ]
+        # rows
         headerX = [
             "  ",
             "  ",
@@ -197,7 +200,7 @@ with open("Nutrition List2.txt", "w") as f:
             "  ",
             "  ",
         ]
-        print(pandas.DataFrame(foodData, headerY, headerX))
+        print(pandas.DataFrame(foodData, headerX, headerY))
         # print(_________________)
 
         # print(item["name"])
@@ -210,15 +213,15 @@ with open("Nutrition List2.txt", "w") as f:
         # print(item["protein"])
         # print("---------------")
 
-        f.write(str(item["name"]) + "\n")
-        f.write(str(item["calories"]) + "\n")
-        f.write(str(item["calories from fat"] + "\n"))
-        f.write(str(item["total fat"] + "\n"))
-        f.write(str(item["saturated fat"] + "\n"))
-        f.write(str(item["cholesterol"] + "\n"))
-        f.write(str(item["sugars"]) + "\n")
-        f.write(str(item["protein"] + "\n"))
-        f.write("---------------\n")
+        # f.write(str(item["name"]) + "\n")
+        # f.write(str(item["calories"]) + "\n")
+        # f.write(str(item["calories from fat"] + "\n"))
+        # f.write(str(item["total fat"] + "\n"))
+        # f.write(str(item["saturated fat"] + "\n"))
+        # f.write(str(item["cholesterol"] + "\n"))
+        # f.write(str(item["sugars"]) + "\n")
+        # f.write(str(item["protein"] + "\n"))
+        # f.write("---------------\n")
 print("Your list has been printed to a file. Thanks for using the Nutritionix API!")
 
 # google URL code
