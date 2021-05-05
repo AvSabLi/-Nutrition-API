@@ -41,7 +41,7 @@ for ingredient in item["recipe"]["ingredientLines"]:
     print(ingredient)
 
 url = f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
-curl -d @chosenfoodItem3.json -H "Content-Type: application/json" "https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
+curl -d @chosenfoodItem3.json -H "Content-Type: application/json" "https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=2ac8a94c3c3bd1be3dbed7d629136176"
 
 
 response = requests.get(url)
