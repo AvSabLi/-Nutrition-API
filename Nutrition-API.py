@@ -168,17 +168,7 @@ with open("Nutrition List2.txt", "w") as f:
             ["Sugar:", item["sugars"]],
             ["Protein:", item["protein"]],
         ]
-        # [
-        #     item["name"],
-        #     item["calories"],
-        #     item["calories from fat"],
-        #     item["total fat"],
-        #     item["saturated fat"],
-        #     item["cholesterol"],
-        #     item["sugars"],
-        #     item["protein"],
-        # ],
-        # columns
+
         headerY = [
             "  ",
             "  ",
