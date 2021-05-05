@@ -2,11 +2,7 @@ import requests, json, sys, time
 from pprint import pprint
 import pandas
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 07741577e2647670258754dd66d9db5c5b5b8e59
 # This function includes the introduction information for the API
 def intro():
     print("Welcome to the Nutritionix API Service.")
@@ -87,13 +83,18 @@ def recipe():
         recipeData = json.loads(response.text)
         r = recipeData["hits"]
         for item in r:
-            print(item["recipe"]["label"])
-            for ingredient in item["recipe"]["ingredientLines"]:
+            recipeName = item["recipe"]["label"]
+            recipeIngredients = item["recipe"]["ingredientLines"]
+            print = str("recipeName")
+            for ingredient in recipeIngredients:
                 print(ingredient)
 
-            break
-
         foodItem(r)
+
+        print("Which of the following recipes would you like to use? We will provide nutritional facts for that recipe.")
+        chosenRecipe = input()
+
+        url:f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
 
 
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
