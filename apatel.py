@@ -31,24 +31,25 @@ for item in r:
     print(chosenfoodItem2)
 
     # print calories
-    chosenfoodCalories = str(item["recipe"]["calories"])
-    print(chosenfoodCalories)
+    chosenfoodCalories = str(int(item["recipe"]["calories"]))
+    # This converts kcals into calories
+    print(chosenfoodCalories + " calories")
 
     # print total fat
-    totalFat = str(item["recipe"]["totalNutrients"]["FAT"]["quantity"])
-    print(totalFat)
+    totalFat = str(int(item["recipe"]["totalNutrients"]["FAT"]["quantity"]))
+    print(totalFat + " grams of Total Fat")
 
     # print cholesterol
-    totalCHOLE = str(item["recipe"]["totalNutrients"]["CHOLE"]["quantity"])
-    print(totalCHOLE)
+    totalCHOLE = str(int(item["recipe"]["totalNutrients"]["CHOLE"]["quantity"]))
+    print(totalCHOLE + " mg of Cholesterol")
 
     # print sugars
-    totalSugar = str(item["recipe"]["totalNutrients"]["SUGAR"]["quantity"])
-    print(totalSugar)
+    totalSugar = str(int(item["recipe"]["totalNutrients"]["SUGAR"]["quantity"]))
+    print(totalSugar + " grams of Sugar")
 
     # print protein
-    totalProtein = str(item["recipe"]["totalNutrients"]["PROCNT"]["quantity"])
-    print(totalProtein)
+    totalProtein = str(int(item["recipe"]["totalNutrients"]["PROCNT"]["quantity"]))
+    print(totalProtein + " grams of Protein")
 
 
 # for ingredient in item["recipe"]["ingredientLines"]:
@@ -64,9 +65,3 @@ chosenfoodItem3 = chosenRecipe
 
 for ingredient in item["recipe"]["ingredientLines"]:
     print(ingredient)
-
-# Calories
-# Total fat
-# Cholesterol
-# Sugars
-# Protein
