@@ -11,17 +11,25 @@ def intro():
     print("Hi " + myName + "!")
     time.sleep(1)
     print(
-        "With this program you can choose recipes to either cook at your home or find menu items from a restaurant to dine out. "
+        "With this program you can either choose recipes to cook at home and eat in, or find menu items from a restaurant and dine out. "
     )
     time.sleep(3)
     print(
-        " Once you have selected your dining option, you can search food item's nutritional information from a selected restaurant or recipe."
+        " Once you have selected your dining option, you will either get a full recipe and related nutritional information with the dine in option, or the nutritional information from a menu item at a selected restaurant."
     )
     time.sleep(3)
+    print("          ")
     print(
-        "For example:\n You can search Mcdonald's and select McNuggets.\n Then, information including calories, fats, cholesterol, sugar and protein  for McNuggets will be given to you."
+        "If you decide to dine in...\n You can search pizza, for example, and have an entire recipe of how to make pizza in your kitchen from scratch!"
     )
     time.sleep(3)
+    print("          ")
+    print(
+        "Or if you decide to dine out...\n  You can search Mcdonald's, for example, and select McNuggets.\n Then, information including calories, fats, cholesterol, sugar and protein  for McNuggets will be given to you."
+    )
+    print("          ")
+    time.sleep(3)
+    print("Now, " + myName + ", Would you like to eat in or dine out?")
     print("---------------")
 
 
