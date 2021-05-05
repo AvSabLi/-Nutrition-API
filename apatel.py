@@ -48,42 +48,54 @@ def function5(chosenfoodItem):
         + chosenfoodItem
         + " you are interested in cooking, and we will show you the ingredients."
     )
-    basicPizza = input()
-    return basicPizza
+    chosenRecipeName = input()
+    return chosenRecipeName
 
 
+# ALSO DELETE AFTER SHOWING LILY & SABRINA
 # redefine URL for specific food item
-def function6(basicPizza):
+# def function6(basicPizza):
 
-    url2 = f"https://api.edamam.com/search?q={basicPizza}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
+#     url2 = f"https://api.edamam.com/search?q={basicPizza}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
 
-    response = requests.get(url2)
-    response.raise_for_status()  # check for errors
+#     response = requests.get(url2)
+#     response.raise_for_status()  # check for errors
 
-    specificData = json.loads(response.text)
+#     specificData = json.loads(response.text)
 
-    specificR = specificData["hits"][1]["recipe"]["ingredientLines"]
-    return specificR
+#     specificR = specificData["hits"]["recipe"]
+#     return specificR
 
 
 # print ingredients
-def function7(basicPizza, specificR):
-    for item2 in specificR:
-        print(item2["recipe"]["label"])
-        for ingredient in item2["recipe"]["ingredientLines"]:
-            print(ingredient)
+def function7(chosenRecipeName, r):
+    for item in r:
+        # print(item["recipe"]["label"])
+        for ingredient in item["recipe"]["ingredientLines"]:
+            if chosenRecipeName == item["recipe"]["label"]:
+                print(ingredient)
+                pass
 
-    # recipeName = str(basicPizza)
-    # # # recipeIngredients = basicPizza["recipe"]["ingredients"]
-    # print(recipeName)
-    # # print = str("recipeIngredients")
-    # for ingredient in basicPizza["recipe"]["ingredientLines"]:
-    #     print(ingredient)
 
-    # for item2 in basicPizza:
-    # print(item2["recipe"]["ingredientLines"])
-    # for ingredient in basicPizza:
-    #     print(basicPizza["recipe"]["ingredientLines"])
+# LITERALLY DELETE EVERYTHING BEYOND THIS UP TO MAIN FUNCTION
+# for chosenRecipeName in r:
+#     print(chosenRecipeName)
+# for item2 in specificR:
+#     print(item2["recipe"]["label"])
+#     for ingredient in item2["recipe"]["ingredientLines"]:
+#         print(ingredient)
+
+# recipeName = str(basicPizza)
+# # # recipeIngredients = basicPizza["recipe"]["ingredients"]
+# print(recipeName)
+# # print = str("recipeIngredients")
+# for ingredient in basicPizza["recipe"]["ingredientLines"]:
+#     print(ingredient)
+
+# for item2 in basicPizza:
+# print(item2["recipe"]["ingredientLines"])
+# for ingredient in basicPizza:
+#     print(basicPizza["recipe"]["ingredientLines"])
 
 
 # ["recipe"]["ingredientLines"]
@@ -99,9 +111,9 @@ userChosenFoodItem = function1()
 userRecipeData = function2(userChosenFoodItem)
 userR = function3(userRecipeData)
 userRecipeName = function4(userR)
-userBasicPizza = function5(userChosenFoodItem)
-userSpecificR = function6(userBasicPizza)
-function7(userBasicPizza, userSpecificR)
+userChosenRecipeName = function5(userChosenFoodItem)
+# userSpecificR = function6(userBasicPizza)
+function7(userChosenRecipeName, userR)
 
 
 # #creating new dictionary for ingredients
