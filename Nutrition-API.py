@@ -72,32 +72,34 @@ def recipe():
         print(
             "please enter what food item you would like to cook, and we will provide the recipe"
         )
+
         recipe = input("recipe name or (q)uit>")
         if recipe.lower() == "q":
             break
 
-        url = f"https://api.edamam.com/search?q={recipe}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
+    url = f"https://api.edamam.com/search?q={recipe}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
 
-        response = requests.get(url)
-        response.raise_for_status()  # check for errors
+    response = requests.get(url)
+    response.raise_for_status()  # check for errors
 
-        recipeData = json.loads(response.text)
-        r = recipeData["hits"]
-        for item in r:
-            recipeName = item["recipe"]["label"]
-            recipeIngredients = item["recipe"]["ingredientLines"]
-            print = str("recipeName")
-            for ingredient in recipeIngredients:
-                print(ingredient)
+    recipeData = json.loads(response.text)
+    r = recipeData["hits"]
+    for item in r:
+        recipeName = item["recipe"]["label"]
+        recipeIngredients = item["recipe"]["ingredients"]
+        print = str("recipeName")
+        print = str("recipeIngredients")
+        for ingredient in recipeIngredients:
+            print(ingredient)
 
-        foodItem(r)
+    foodItem(r)
 
-        print(
-            "Which of the following recipes would you like to use? We will provide nutritional facts for that recipe."
-        )
-        chosenRecipe = input()
+    print(
+        "Which of the following recipes would you like to use? We will provide nutritional facts for that recipe."
+    )
+    chosenRecipe = input()
 
-        url: f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
+    url: f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
 
 
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
