@@ -132,7 +132,6 @@ myList = []
 time.sleep(1)
 restaurant()
 recipe()
-run()
 print("Here are the nutrition facts for the food items you selected:\n")
 time.sleep(2)
 print("---------------")
@@ -141,59 +140,38 @@ print(" ")
 with open("Nutrition List2.txt", "w") as f:
     # This for loops prints all of the food items and their nutritional information at once, once the user quits out of the program
     for item in myList:
-        # details = {"Item Name": [item["item_name"]]}
-        # data = {"name": ["muffin", "burger"], "calories": [100, 200]}
-        # dframe = pd.DataFrame(data)
 
-        # dframe = pd.DataFrame(
-        #     myList,
-        #     columns=[
-        #         "Item Name",
-        #         "Calories",
-        #         "Calories from Fat",
-        #         "Total Fat",
-        #         "Saturated Fat",
-        #         "Cholesterol",
-        #         "Sugar",
-        #         "Protein",
-        #     ],
-        #     facts=["item_name", "nf_calories"],
-        # )
-
-        # print(dframe)
-
-        # avani
         foodData = [
             [
-                "Item Name",
-                "Calories",
-                "Calories from Fat",
-                "Total Fat",
-                "Saturated Fat",
-                "Cholesterol",
-                "Sugar",
-                "Protein",
+                ["Item Name:", item["name"]],
+                ["Calories:", item["calories"]],
+                ["Calories from Fat:", item["calories from fat"]],
+                ["Total Fat:", item["total fat"]],
+                ["Saturated Fat:", item["saturated fat"]],
+                ["Cholesterol", item["cholesterol"]],
+                ["Sugar", item["sugars"]],
+                ["Protein", item["protein"]],
             ],
-            [
-                item["name"],
-                item["calories"],
-                item["calories from fat"],
-                item["total fat"],
-                item["saturated fat"],
-                item["cholesterol"],
-                item["sugars"],
-                item["protein"],
-            ],
+            # [
+            #     item["name"],
+            #     item["calories"],
+            #     item["calories from fat"],
+            #     item["total fat"],
+            #     item["saturated fat"],
+            #     item["cholesterol"],
+            #     item["sugars"],
+            #     item["protein"],
+            # ],
         ]
         headerY = [
             "  ",
             "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
+            # # "  ",
+            # # "  ",
+            # # "  ",
+            # # "  ",
+            # # "  ",
+            # # "  ",
         ]
         headerX = [
             "  ",
@@ -208,38 +186,15 @@ with open("Nutrition List2.txt", "w") as f:
         print(pandas.DataFrame(foodData, headerY, headerX))
         # print(_________________)
 
-        # df.describe()
-
-        # data = [
-        # item["name"],
-        # item["calories"],
-        # item["calories from fat"],
-        # item["total fat"],
-        # item["saturated fat"],
-        # item["cholesterol"],
-        # item["sugars"],
-        # item["protein"],
-        # ]
-        # headers = [
-        # "calories",
-        # "calories from fat",
-        # "total fat",
-        # "saturated fat",
-        # "cholesterol",
-        # "sugars",
-        # "protein",
-        # ]
-        # print(pandas.DataFrame(data, headers, headers))
-
-        print(item["name"])
-        print(item["calories"])
-        print(item["calories from fat"])
-        print(item["total fat"])
-        print(item["saturated fat"])
-        print(item["cholesterol"])
-        print(item["sugars"])
-        print(item["protein"])
-        print("---------------")
+        # print(item["name"])
+        # print(item["calories"])
+        # print(item["calories from fat"])
+        # print(item["total fat"])
+        # print(item["saturated fat"])
+        # print(item["cholesterol"])
+        # print(item["sugars"])
+        # print(item["protein"])
+        # print("---------------")
 
         f.write(str(item["name"]) + "\n")
         f.write(str(item["calories"]) + "\n")
