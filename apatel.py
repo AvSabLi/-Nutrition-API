@@ -89,7 +89,6 @@ def function8(r, chosenRecipeName):
 def function9(r, chosenRecipeName):
     for item in r:
         # print(item["recipe"]["label"])
-        # for chosenFoodCalories in item["recipe"]["calories"]:
         if chosenRecipeName == item["recipe"]["label"]:
             recipeTotalFat = str(
                 int(item["recipe"]["totalNutrients"]["FAT"]["quantity"])
@@ -99,16 +98,63 @@ def function9(r, chosenRecipeName):
     return recipeTotalFat
 
 
+# cholesterol function
+def function10(r, chosenRecipeName):
+    for item in r:
+        # print(item["recipe"]["label"])
+        if chosenRecipeName == item["recipe"]["label"]:
+            recipeCholesterol = str(
+                int(item["recipe"]["totalNutrients"]["CHOLE"]["quantity"])
+            )
+            # print(totalCHOLE + " mg of Cholesterol")
+        pass
+    return recipeCholesterol
+
+
+# sugar function
+def function11(r, chosenRecipeName):
+    for item in r:
+        # print(item["recipe"]["label"])
+        if chosenRecipeName == item["recipe"]["label"]:
+            recipeSugar = str(
+                int(item["recipe"]["totalNutrients"]["SUGAR"]["quantity"])
+            )
+            # print(totalSugar + " grams of Sugar")
+        pass
+    return recipeSugar
+
+
+# protein function
+def function12(r, chosenRecipeName):
+    for item in r:
+        # print(item["recipe"]["label"])
+        if chosenRecipeName == item["recipe"]["label"]:
+            recipeProtein = str(
+                int(item["recipe"]["totalNutrients"]["PROCNT"]["quantity"])
+            )
+            # print(totalProtein + " grams of Protein")
+        pass
+    return recipeProtein
+
+
 # print nutrition info
-def function12(seeNutritionInfo, chosenRecipeName, recipeCalories, recipeTotalFat):
+def function13(
+    seeNutritionInfo,
+    chosenRecipeName,
+    recipeCalories,
+    recipeTotalFat,
+    recipeCholesterol,
+    recipeSugar,
+    recipeProtein,
+):
     if seeNutritionInfo == "yes" or seeNutritionInfo == "y":
         recipeNutritionPandas = [
             ["Item Name:", chosenRecipeName],
             ["Calories:", recipeCalories],
             ["Total Fat:", recipeTotalFat],
-            # ["Cholesterol:", item["cholesterol"]],
-            # ["Sugar:", item["sugars"]],
-            # ["Protein:", item["protein"]],
+            ["Cholesterol:", recipeCholesterol],
+            ["Sugar:", recipeSugar],
+            ["Protein:", recipeProtein],
         ]
         # columns
         headerY = [
@@ -126,9 +172,9 @@ def function12(seeNutritionInfo, chosenRecipeName, recipeCalories, recipeTotalFa
             "  ",
             "  ",
             "  ",
-            # "  ",
-            # "  ",
-            # "  ",
+            "  ",
+            "  ",
+            "  ",
             # "  ",
             # "  ",
         ]
@@ -148,8 +194,17 @@ function6(userChosenRecipeName, userR)
 userSeeNutritionInfo = function7(userChosenRecipeName)
 userRecipeCalories = function8(userR, userChosenRecipeName)
 userRecipeTotalFat = function9(userR, userChosenRecipeName)
-function12(
-    userSeeNutritionInfo, userChosenRecipeName, userRecipeCalories, userRecipeTotalFat
+userRecipeCholesterol = function10(userR, userChosenRecipeName)
+userRecipeSugar = function11(userR, userChosenRecipeName)
+userRecipeProtein = function12(userR, userChosenRecipeName)
+function13(
+    userSeeNutritionInfo,
+    userChosenRecipeName,
+    userRecipeCalories,
+    userRecipeTotalFat,
+    userRecipeCholesterol,
+    userRecipeSugar,
+    userRecipeProtein,
 )
 
 
