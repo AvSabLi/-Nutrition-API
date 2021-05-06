@@ -122,12 +122,12 @@ def foodItem(foodList):
                 selectedFood = {
                     "name": item["fields"]["item_name"],
                     "calories": str(item["fields"]["nf_calories"]) + " calories",
-                    "calories from fat": str(item["fields"]["nf_calories_from_fat"])
-                    + " calories from fat",
+                    # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
+                    # + " calories from fat",
                     "total fat": str(item["fields"]["nf_total_fat"])
                     + " grams of total fat",
-                    "saturated fat": str(item["fields"]["nf_saturated_fat"])
-                    + " grams of saturated fat",
+                    # "saturated fat": str(item["fields"]["nf_saturated_fat"])
+                    # + " grams of saturated fat",
                     "cholesterol": str(item["fields"]["nf_cholesterol"])
                     + " grams of cholesterol",
                     "sugars": str(item["fields"]["nf_sugars"]) + " grams of sugar",
@@ -163,9 +163,9 @@ with open("Nutrition List2.txt", "w") as f:
         foodData = [
             ["Item Name:", item["name"]],
             ["Calories:", item["calories"]],
-            ["Calories from Fat:", item["calories from fat"]],
+            # ["Calories from Fat:", item["calories from fat"]],
             ["Total Fat:", item["total fat"]],
-            ["Saturated Fat:", item["saturated fat"]],
+            # ["Saturated Fat:", item["saturated fat"]],
             ["Cholesterol:", item["cholesterol"]],
             ["Sugar:", item["sugars"]],
             ["Protein:", item["protein"]],
