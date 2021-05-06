@@ -1,3 +1,4 @@
+from apatel import function12
 import requests, json, sys, time
 from pprint import pprint
 import pandas
@@ -143,6 +144,22 @@ def foodItem(foodList):
             )  # this print statement will print the nutritional information for the food item selected
 
 
+# def Merge(foodData):
+#     #    pandas.concat([
+#     #     pandas.concat([foodData, function12, axis=1)]).to_csv('foo.csv')
+
+#     foodData = pandas.DataFrame(
+#         [["headerX", "headerY"], ["rows", "column"]],
+#         index=["row 1", "row 2"],
+#         columns=["col 1", "col 2"],
+#     )
+#     foodData.to_excel("output.xlsx")
+
+
+# def Comparison():
+# print("")
+
+
 # Sabrina put code for nutrition facts here for recipes
 
 # this is the main program
@@ -150,7 +167,7 @@ intro()
 myList = []
 time.sleep(1)
 restaurant()
-recipe()
+# recipe()
 print("Here are the nutrition facts for the food items you selected:\n")
 time.sleep(2)
 print("---------------")
@@ -214,7 +231,12 @@ with open("Nutrition List2.txt", "w") as f:
         # f.write(str(item["sugars"]) + "\n")
         # f.write(str(item["protein"] + "\n"))
         # f.write("---------------\n")
+
+
+pandas.DataFrame(foodData).to_excel("foodData.xlsx")
+
 print("Your list has been printed to a file. Thanks for using the Nutritionix API!")
+
 
 # google URL code
 def function1():
