@@ -52,58 +52,90 @@ def function5(chosenfoodItem):
     return chosenRecipeName
 
 
-# ALSO DELETE AFTER SHOWING LILY & SABRINA
-# redefine URL for specific food item
-# def function6(basicPizza):
-
-#     url2 = f"https://api.edamam.com/search?q={basicPizza}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
-
-#     response = requests.get(url2)
-#     response.raise_for_status()  # check for errors
-
-#     specificData = json.loads(response.text)
-
-#     specificR = specificData["hits"]["recipe"]
-#     return specificR
-
-
 # print ingredients
-def function7(chosenRecipeName, r):
+def function6(chosenRecipeName, r):
     for item in r:
         # print(item["recipe"]["label"])
         for ingredient in item["recipe"]["ingredientLines"]:
             if chosenRecipeName == item["recipe"]["label"]:
-                print(ingredient)
+                print("-" + ingredient)
                 pass
 
 
-# LITERALLY DELETE EVERYTHING BEYOND THIS UP TO MAIN FUNCTION
-# for chosenRecipeName in r:
-#     print(chosenRecipeName)
-# for item2 in specificR:
-#     print(item2["recipe"]["label"])
-#     for ingredient in item2["recipe"]["ingredientLines"]:
-#         print(ingredient)
-
-# recipeName = str(basicPizza)
-# # # recipeIngredients = basicPizza["recipe"]["ingredients"]
-# print(recipeName)
-# # print = str("recipeIngredients")
-# for ingredient in basicPizza["recipe"]["ingredientLines"]:
-#     print(ingredient)
-
-# for item2 in basicPizza:
-# print(item2["recipe"]["ingredientLines"])
-# for ingredient in basicPizza:
-#     print(basicPizza["recipe"]["ingredientLines"])
+# ask if user wants to see nutrition facts
+def function7(chosenRecipeName):
+    print(
+        "Would you like to see the nutritional facts for "
+        + chosenRecipeName
+        + "? Type yes or no"
+    )
+    seeNutritionInfo = input()
+    return seeNutritionInfo
 
 
-# ["recipe"]["ingredientLines"]
-# for basicPizza in r:
-#     # ingredients = basicPizza["recipe"]["ingredients"]
-#     # print(ingredients)
-#     for ingredient in basicPizza["recipe"]["ingredients"]:
-#         print(ingredient)
+# calories function
+def function8(r, chosenRecipeName):
+    for item in r:
+        # print(item["recipe"]["label"])
+        # for chosenFoodCalories in item["recipe"]["calories"]:
+        if chosenRecipeName == item["recipe"]["label"]:
+            recipeCalories = str(int(item["recipe"]["calories"]))
+            # print(chosenFoodCalories + " calories")
+        pass
+    return recipeCalories
+
+
+# total fat function
+def function9(r, chosenRecipeName):
+    for item in r:
+        # print(item["recipe"]["label"])
+        # for chosenFoodCalories in item["recipe"]["calories"]:
+        if chosenRecipeName == item["recipe"]["label"]:
+            recipeTotalFat = str(
+                int(item["recipe"]["totalNutrients"]["FAT"]["quantity"])
+            )
+            # print(totalFat + " grams of Total Fat")
+        pass
+    return recipeTotalFat
+
+
+# print nutrition info
+def function12(seeNutritionInfo, chosenRecipeName, recipeCalories, recipeTotalFat):
+    if seeNutritionInfo == "yes" or seeNutritionInfo == "y":
+        recipeNutritionPandas = [
+            ["Item Name:", chosenRecipeName],
+            ["Calories:", recipeCalories],
+            ["Total Fat:", recipeTotalFat],
+            # ["Cholesterol:", item["cholesterol"]],
+            # ["Sugar:", item["sugars"]],
+            # ["Protein:", item["protein"]],
+        ]
+        # columns
+        headerY = [
+            "  ",
+            "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+        ]
+        # rows
+        headerX = [
+            "  ",
+            "  ",
+            "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+            # "  ",
+        ]
+        print(pandas.DataFrame(recipeNutritionPandas, headerX, headerY))
+    elif seeNutritionInfo == "no" or seeNutritionInfo == "n":
+        print("No problem!")
+    pass
 
 
 # main function
@@ -112,8 +144,13 @@ userRecipeData = function2(userChosenFoodItem)
 userR = function3(userRecipeData)
 userRecipeName = function4(userR)
 userChosenRecipeName = function5(userChosenFoodItem)
-# userSpecificR = function6(userBasicPizza)
-function7(userChosenRecipeName, userR)
+function6(userChosenRecipeName, userR)
+userSeeNutritionInfo = function7(userChosenRecipeName)
+userRecipeCalories = function8(userR, userChosenRecipeName)
+userRecipeTotalFat = function9(userR, userChosenRecipeName)
+function12(
+    userSeeNutritionInfo, userChosenRecipeName, userRecipeCalories, userRecipeTotalFat
+)
 
 
 # #creating new dictionary for ingredients
@@ -123,7 +160,7 @@ function7(userChosenRecipeName, userR)
 #         recipeFacts = {
 #             "name:" item2["recipe"]["label"],
 #             "ingredients:" item2["recipe"]["ingredients"]
-#         }
+# #         }
 
 # print ingredients
 # recipeIngredients = item["recipe"]["ingredientLines"]
