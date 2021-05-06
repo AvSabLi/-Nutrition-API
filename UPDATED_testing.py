@@ -36,80 +36,89 @@ def intro():
 
 
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
-def foodItem(foodList):
+def functionA(n):
     # The while loop allows for people to select more than one food item at once
-    while True:
-        print(
-            "please enter which item name you want to see nutrition information for from the list below or enter q(uit)"
-        )
-        foodItem = input()
-        if (
-            foodItem == "q"
-        ):  # if the user enter q the program will quit out of the foodItem function
-            break
-        # selectedFood is a dictionary
-        # selectedFood includes different pieces of information: item name, calories, calories from fat, total fat, saturated fat, cholesterol, sugars, protein
-        selectedFood = {}
-        for item in foodList:
-            if foodItem == item["fields"]["item_name"]:
-                selectedFood = {
-                    "name": item["fields"]["item_name"],
-                    "calories": str(item["fields"]["nf_calories"]) + " calories",
-                    "calories from fat": str(item["fields"]["nf_calories_from_fat"])
-                    + " calories from fat",
-                    # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
-                    # + " calories from fat",
-                    "total fat": str(item["fields"]["nf_total_fat"])
-                    + " grams of total fat",
-                    "saturated fat": str(item["fields"]["nf_saturated_fat"])
-                    + " grams of saturated fat",
-                    # "saturated fat": str(item["fields"]["nf_saturated_fat"])
-                    # + " grams of saturated fat",
-                    "cholesterol": str(item["fields"]["nf_cholesterol"])
-                    + " grams of cholesterol",
-                    "sugars": str(item["fields"]["nf_sugars"]) + " grams of sugar",
-                    "protein": str(item["fields"]["nf_protein"]) + " grams of protein",
-                }
+    # while True:
+    print(
+        "please enter which item name you want to see nutrition information for from the list below or enter q(uit)"
+    )
+    foodItem = input()
+    # if (
+    #     foodItem == "q"
+    # ):  # if the user enter q the program will quit out of the foodItem function
+    # break
+    return foodItem
+
+
+def functionB(n, foodItem, myList):
+    for item in n:
+        if foodItem == item["fields"]["item_name"]:
+            selectedFood = {
+                "name": item["fields"]["item_name"],
+                "calories": str(item["fields"]["nf_calories"]) + " calories",
+                "calories from fat": str(item["fields"]["nf_calories_from_fat"])
+                + " calories from fat",
+                # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
+                # + " calories from fat",
+                "total fat": str(item["fields"]["nf_total_fat"])
+                + " grams of total fat",
+                "saturated fat": str(item["fields"]["nf_saturated_fat"])
+                + " grams of saturated fat",
+                # "saturated fat": str(item["fields"]["nf_saturated_fat"])
+                # + " grams of saturated fat",
+                "cholesterol": str(item["fields"]["nf_cholesterol"])
+                + " grams of cholesterol",
+                "sugars": str(item["fields"]["nf_sugars"]) + " grams of sugar",
+                "protein": str(item["fields"]["nf_protein"]) + " grams of protein",
+            }
             # this adds the information gathered from selectedFood to a list called myList
             # myList prints all of the food items selected with their corresponding nutritional information after the user quits out of the program
             myList.append(selectedFood)
-        for field in selectedFood:
-            print(
-                selectedFood[field]
-            )  # this print statement will print the nutritional information for the food item selected
+    for field in selectedFood:
+        print(
+            selectedFood[field]
+        )  # this print statement will print the nutritional information for the food item selected
     return selectedFood
 
 
 # need to ask if dine in or eat out with related code
 # this function asks the player which restaurants data they want to look at and returns food items sold at the restaurant selected
-def restaurant():
-    while (
-        True
-    ):  # this While loop will continue to run until the player quits out of the game, the game is ended by the break in line 16
-        print("please enter a restaurant or food brand name")
-        restaurant = input(
-            "Restaurant/brand name or (q)uit>"
-        )  # user will input a restaurant name and the API will search relevant information from the restaurant
-        if restaurant.lower() == "q":
-            break
-        # This URL calls the API with the search by 'restaurant' function and names it URL.
-        # When a 'restaurant' is chosen, the adjusted url returns a dictionary within a list of food item names for that specific restaurant/brand
-        url = f"https://api.nutritionix.com/v1_1/search/{restaurant}?results=0:20&fields=item_name,nf_calories,nf_calories_from_fat,nf_total_fat,nf_saturated_fat,nf_cholesterol,nf_sugars,nf_protein&appId=f3b374ec&appKey=988ab0bd10dc4a886738973eec0524d1"
-        response = requests.get(url)
-        response.raise_for_status()  # check for errors
-        # Load json data into a python variable
-        nutritionData = json.loads(response.text)
-        # variable 'n' looks into
-        n = nutritionData["hits"]
-        for item in n:
-            print(
-                item["fields"]["item_name"],
-            )
-        foodItem(n)
+def functionC():
+    # while (
+    #     True
+    # ):  # this While loop will continue to run until the player quits out of the game, the game is ended by the break in line 16
+    print("Please enter a restaurant name.")
+    restaurant = input(
+        "Restaurant/brand name or (q)uit>"
+    )  # user will input a restaurant name and the API will search relevant information from the restaurant
+    # if restaurant.lower() == "q":
+    #     break
+    return restaurant
+
+
+def functionD(restaurant):
+    # This URL calls the API with the search by 'restaurant' function and names it URL.
+    # When a 'restaurant' is chosen, the adjusted url returns a dictionary within a list of food item names for that specific restaurant/brand
+    url = f"https://api.nutritionix.com/v1_1/search/{restaurant}?results=0:20&fields=item_name,nf_calories,nf_calories_from_fat,nf_total_fat,nf_saturated_fat,nf_cholesterol,nf_sugars,nf_protein&appId=f3b374ec&appKey=988ab0bd10dc4a886738973eec0524d1"
+    response = requests.get(url)
+    response.raise_for_status()  # check for errors
+    # Load json data into a python variable
+    nutritionData = json.loads(response.text)
+    # variable 'n' looks into
+    n = nutritionData["hits"]
     return n
 
 
-def restaurantTable(n, myList, selectedFood):
+# printing restaurant menu
+def functionE(n):
+    for item in n:
+        print(
+            item["fields"]["item_name"],
+        )
+
+
+# print pandas table
+def functionF(n, myList, selectedFood):
     print("Here are the nutrition facts for the food items you selected:\n")
     time.sleep(2)
     # print("---------------")
@@ -145,33 +154,29 @@ def restaurantTable(n, myList, selectedFood):
             "  ",
             "  ",
             "  ",
-            "  ",
-            "  ",
+            # "  ",
+            # "  ",
         ]
         print(pandas.DataFrame(foodData, headerX, headerY))
 
-def googleMaps():
-        # google URL code
-    #PART 1
-        print("Which location would you like to search?")
-        searchLocation = input()
-        return searchLocation
 
-    #UPDATE VARIABLE FOR LOCATION 
-    #PART 2
-    def function2(searchLocation)
+def functionG(restaurant):
+    print("Do you want to find the nearest " + restaurant + "?")
+    searchLocation = input()
+    return searchLocation
+
+
+# print URL if user says yes
+def functionH(searchLocation, restaurant):
+    if searchLocation == "yes" or searchLocation == "y":
         # Fetch the information of that restaurant
-        map_url = "https://www.google.com/maps/search/?api=1&query=" + searchLocation
-
+        map_url = f"https://www.google.com/maps/search/?api=1&query={restaurant}"
         # Print message
         print("To view " + searchLocation + " in Google Maps, go to " + map_url)
         print("-----------------------------------------")
         return map_url
-
-
-# main program
-userSearchLocation = function1()
-userMapsUrl = function2(userSearchLocation)
+    elif searchLocation == "no" or searchLocation == "n":
+        pass
 
 
 # ask which food item user wants to cook
@@ -207,7 +212,6 @@ def function4(r):
         # print recipe name
         recipeName = item["recipe"]["label"]
         print(str(recipeName))
-    return recipeName
 
 
 # ask user to select a specific recipe based on results
@@ -350,44 +354,52 @@ def function13(
         print(pandas.DataFrame(recipeNutritionPandas, headerX, headerY))
     elif seeNutritionInfo == "no" or seeNutritionInfo == "n":
         print("No problem!")
-    pass
 
-
-# main function
-userDineInorOut = intro()
-if (
-    userDineInorOut == "out"
-    or userDineInorOut == "dine out"
-    or userDineInorOut == "Dine out"
-):
-    myList = []
-    time.sleep(1)
-    userN = restaurant()
-    restaurantTable(userN, myList, userSelectedFood)
-    googleMaps()
-elif (
-    userDineInorOut == "in"
-    or userDineInorOut == "dine in"
-    or userDineInorOut == "Dine in"
-):
-    userChosenFoodItem = function1()
-    userRecipeData = function2(userChosenFoodItem)
-    userR = function3(userRecipeData)
-    userRecipeName = function4(userR)
-    userChosenRecipeName = function5(userChosenFoodItem)
-    function6(userChosenRecipeName, userR)
-    userSeeNutritionInfo = function7(userChosenRecipeName)
-    userRecipeCalories = function8(userR, userChosenRecipeName)
-    userRecipeTotalFat = function9(userR, userChosenRecipeName)
-    userRecipeCholesterol = function10(userR, userChosenRecipeName)
-    userRecipeSugar = function11(userR, userChosenRecipeName)
-    userRecipeProtein = function12(userR, userChosenRecipeName)
-    function13(
-        userSeeNutritionInfo,
-        userChosenRecipeName,
-        userRecipeCalories,
-        userRecipeTotalFat,
-        userRecipeCholesterol,
-        userRecipeSugar,
-        userRecipeProtein,
-    )
+    # main function
+    userDineInorOut = intro()
+    if (
+        userDineInorOut == "out"
+        or userDineInorOut == "dine out"
+        or userDineInorOut == "Dine out"
+    ):
+        userRestaurant = functionC()
+        userN = functionD(userRestaurant)
+        functionE(userN)
+        userFoodItem = functionA(userN)
+        myList = []
+        selectedFood = {}
+        functionB(userN, userFoodItem)
+        functionF(userN, myList, selectedFood)
+        # fix URL
+        userSearchLocation = functionG(userRestaurant)
+        functionH(userSearchLocation, userRestaurant)
+    elif (
+        userDineInorOut == "in"
+        or userDineInorOut == "eat in"
+        or userDineInorOut == "eat in"
+    ):
+        exploreRecipe = "yes" or "y"
+        while exploreRecipe == "yes" or exploreRecipe == "y":
+            userChosenFoodItem = function1()
+            userRecipeData = function2(userChosenFoodItem)
+            userR = function3(userRecipeData)
+            function4(userR)
+            userChosenRecipeName = function5(userChosenFoodItem)
+            function6(userChosenRecipeName, userR)
+            userSeeNutritionInfo = function7(userChosenRecipeName)
+            userRecipeCalories = function8(userR, userChosenRecipeName)
+            userRecipeTotalFat = function9(userR, userChosenRecipeName)
+            userRecipeCholesterol = function10(userR, userChosenRecipeName)
+            userRecipeSugar = function11(userR, userChosenRecipeName)
+            userRecipeProtein = function12(userR, userChosenRecipeName)
+            function13(
+                userSeeNutritionInfo,
+                userChosenRecipeName,
+                userRecipeCalories,
+                userRecipeTotalFat,
+                userRecipeCholesterol,
+                userRecipeSugar,
+                userRecipeProtein,
+            )
+            print("Do you want to explore another recipe to cook?")
+            exploreRecipe = input()
