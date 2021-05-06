@@ -139,7 +139,7 @@ userDineInOrOut = intro()
 myList = []
 time.sleep(1)
 restaurant1()
-restaurant2()
+# restaurant2()
 # recipe()
 print("Here are the nutrition facts for the food items you selected:\n")
 time.sleep(2)

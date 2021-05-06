@@ -3,7 +3,7 @@ from pprint import pprint
 import pandas
 
 # This function includes the introduction information for the API
-def intro():
+def intro1():
     print("Welcome to the Nutritionix API Service.")
     # time.sleep(1)  # time.sleep adds time before the next line of code is printed
     print("What is your name?")
@@ -29,6 +29,10 @@ def intro():
     # )
     # print("          ")
     # time.sleep(3)
+    return myName
+
+
+def intro2(myName):
     print("Now, " + myName + ", would you like to eat in or dine out?")
     dineInOrOut = input()
     print("---------------")
@@ -184,7 +188,7 @@ def function1():
     print(
         "please enter what food item you would like to cook, and we will provide the recipe"
     )
-    chosenfoodItem = input("recipe name or (q)uit>")
+    chosenfoodItem = input()
     # if recipe.lower() == "q":
     #     break
     return chosenfoodItem
@@ -355,24 +359,36 @@ def function13(
     elif seeNutritionInfo == "no" or seeNutritionInfo == "n":
         print("No problem!")
 
-    # main function
-    userDineInorOut = intro()
+
+def closing():
+    print("Thank you for using our program. Stay healthy!")
+
+
+# main function
+userMyName = intro1()
+exploreAgain = "yes" or "y"
+while exploreAgain == "yes" or exploreAgain == "y":
+    userDineInorOut = intro2(userMyName)
     if (
         userDineInorOut == "out"
         or userDineInorOut == "dine out"
         or userDineInorOut == "Dine out"
     ):
-        userRestaurant = functionC()
-        userN = functionD(userRestaurant)
-        functionE(userN)
-        userFoodItem = functionA(userN)
-        myList = []
-        selectedFood = {}
-        functionB(userN, userFoodItem)
-        functionF(userN, myList, selectedFood)
-        # fix URL
-        userSearchLocation = functionG(userRestaurant)
-        functionH(userSearchLocation, userRestaurant)
+        exploreRestaurant = "yes" or "y"
+        while exploreRestaurant == "yes" or exploreRestaurant == "y":
+            userRestaurant = functionC()
+            userN = functionD(userRestaurant)
+            functionE(userN)
+            userFoodItem = functionA(userN)
+            myList = []
+            selectedFood = {}
+            functionB(userN, userFoodItem, myList)
+            functionF(userN, myList, selectedFood)
+            # fix URL
+            userSearchLocation = functionG(userRestaurant)
+            functionH(userSearchLocation, userRestaurant)
+            print("Do you want to explore another restaurant?")
+            exploreRestaurant = input()
     elif (
         userDineInorOut == "in"
         or userDineInorOut == "eat in"
@@ -403,3 +419,6 @@ def function13(
             )
             print("Do you want to explore another recipe to cook?")
             exploreRecipe = input()
+    print("Do you want to explore more dining options?")
+    exploreAgain = input()
+closing()
