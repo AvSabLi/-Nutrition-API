@@ -32,9 +32,9 @@ def intro():
     # print("          ")
     # time.sleep(3)
     print("Now, " + myName + ", would you like to eat in or dine out?")
-    dineInOrOut = input()
+    # dineInOrOut = input()
     print("---------------")
-    return dineInOrOut
+    # return dineInOrOut
 
 
 # this function asks the player which restaurants data they want to look at and returns food items sold at the restaurant selected
@@ -66,52 +66,8 @@ def restaurant2(chosenRestaurant):
     return n
 
 
-# print menu
-def restaurant3(n):
-    for item in n:
-        print(
-            item["fields"]["item_name"],
-        )
-    foodItem(n)
-
-
-# def recipe():
-#     while True:
-#         print(
-#             "please enter what food item you would like to cook, and we will provide the recipe"
-#         )
-
-#         recipe = input("recipe name or (q)uit>")
-#         if recipe.lower() == "q":
-#             break
-
-#     url = f"https://api.edamam.com/search?q={recipe}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
-
-#     response = requests.get(url)
-#     response.raise_for_status()  # check for errors
-
-#     recipeData = json.loads(response.text)
-#     r = recipeData["hits"]
-#     for item in r:
-#         recipeName = item["recipe"]["label"]
-#         recipeIngredients = item["recipe"]["ingredients"]
-#         print = str("recipeName")
-#         print = str("recipeIngredients")
-#         for ingredient in recipeIngredients:
-#             print(ingredient)
-
-#     foodItem(r)
-
-#     print(
-#         "Which of the following recipes would you like to use? We will provide nutritional facts for that recipe."
-#     )
-#     chosenRecipe = input()
-
-#     url: f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
-
-
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
-def foodItem(foodList):
+def restaurant3(foodList):
     # The while loop allows for people to select more than one food item at once
     while True:
         print(
@@ -149,121 +105,23 @@ def foodItem(foodList):
             print(
                 selectedFood[field]
             )  # this print statement will print the nutritional information for the food item selected
+    return foodItem
 
 
-# def Merge(foodData):
-#     #    pandas.concat([
-#     #     pandas.concat([foodData, function12, axis=1)]).to_csv('foo.csv')
-
-#     foodData = pandas.DataFrame(
-#         [["headerX", "headerY"], ["rows", "column"]],
-#         index=["row 1", "row 2"],
-#         columns=["col 1", "col 2"],
-#     )
-#     foodData.to_excel("output.xlsx")
+# print menu
+def restaurant4(n, foodItem):
+    for item in n:
+        print(
+            item["fields"]["item_name"],
+        )
+    foodItem(n)
 
 
-# def Comparison():
-# print("")
-
-
-# Sabrina put code for nutrition facts here for recipes
-
-# this is the main program
-userDineInOrOut = intro()
-
-
-myList = []
-time.sleep(1)
-restaurant()
-# recipe()
-print("Here are the nutrition facts for the food items you selected:\n")
-time.sleep(2)
-print("---------------")
-print(" ")
-#'with open' exports items in my list to a separate file and prints the output in the file
-with open("Nutrition List2.txt", "w") as f:
-    # This for loops prints all of the food items and their nutritional information at once, once the user quits out of the program
-    for item in myList:
-
-        foodData = [
-            ["Item Name:", item["name"]],
-            ["Calories:", item["calories"]],
-            # ["Calories from Fat:", item["calories from fat"]],
-            ["Total Fat:", item["total fat"]],
-            # ["Saturated Fat:", item["saturated fat"]],
-            ["Cholesterol:", item["cholesterol"]],
-            ["Sugar:", item["sugars"]],
-            ["Protein:", item["protein"]],
-        ]
-
-        headerY = [
-            "  ",
-            "  ",
-            # "  ",
-            # "  ",
-            # "  ",
-            # "  ",
-            # "  ",
-            # "  ",
-        ]
-        # rows
-        headerX = [
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-        ]
-        print(pandas.DataFrame(foodData, headerX, headerY))
-        # print(_________________)
-
-        # print(item["name"])
-        # print(item["calories"])
-        # print(item["calories from fat"])
-        # print(item["total fat"])
-        # print(item["saturated fat"])
-        # print(item["cholesterol"])
-        # print(item["sugars"])
-        # print(item["protein"])
-        # print("---------------")
-
-        # f.write(str(item["name"]) + "\n")
-        # f.write(str(item["calories"]) + "\n")
-        # f.write(str(item["calories from fat"] + "\n"))
-        # f.write(str(item["total fat"] + "\n"))
-        # f.write(str(item["saturated fat"] + "\n"))
-        # f.write(str(item["cholesterol"] + "\n"))
-        # f.write(str(item["sugars"]) + "\n")
-        # f.write(str(item["protein"] + "\n"))
-        # f.write("---------------\n")
-
-
-pandas.DataFrame(foodData).to_excel("foodData.xlsx")
-
-print("Your list has been printed to a file. Thanks for using the Nutritionix API!")
-
-
-# google URL code
-def function1():
-    print("Which location would you like to search?")
-    searchLocation = input()
-    return searchLocation
-
-
-def function2(searchLocation):
-    # Fetch the information of that restaurant
-    map_url = "https://www.google.com/maps/search/?api=1&query=" + searchLocation
-
-    # Print message
-    print("To view " + searchLocation + " in Google Maps, go to " + map_url)
-    print("-----------------------------------------")
-    return map_url
-
-
-# main program
-userSearchLocation = function1()
-userMapsUrl = function2(userSearchLocation)
+# main function LETS GO
+# userDineInOrOut = intro()
+intro()
+# userChosenRestaurant = restaurant1()
+# userN = restaurant2(userChosenRestaurant)
+# myList = []
+# userFoodItem = restaurant3(userN)
+# restaurant4(userN, userFoodItem)
