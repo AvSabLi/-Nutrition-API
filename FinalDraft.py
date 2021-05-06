@@ -1,4 +1,4 @@
-from apatel import function12
+# from apatel import function12
 import requests, json, sys, time
 from pprint import pprint
 import pandas
@@ -120,8 +120,8 @@ def restaurant4(n, foodItem):
 # main function LETS GO
 # userDineInOrOut = intro()
 intro()
-# userChosenRestaurant = restaurant1()
-# userN = restaurant2(userChosenRestaurant)
-# myList = []
-# userFoodItem = restaurant3(userN)
-# restaurant4(userN, userFoodItem)
+userChosenRestaurant = restaurant1()
+userN = restaurant2(userChosenRestaurant)
+myList = []
+userFoodItem = restaurant3(userN)
+restaurant4(userN, userFoodItem)

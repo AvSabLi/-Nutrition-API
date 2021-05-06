@@ -1,4 +1,4 @@
-from apatel import function12
+# from apatel import function12
 import requests, json, sys, time
 from pprint import pprint
 import pandas
@@ -75,41 +75,6 @@ def restaurant3(n):
     foodItem(n)
 
 
-# def recipe():
-#     while True:
-#         print(
-#             "please enter what food item you would like to cook, and we will provide the recipe"
-#         )
-
-#         recipe = input("recipe name or (q)uit>")
-#         if recipe.lower() == "q":
-#             break
-
-#     url = f"https://api.edamam.com/search?q={recipe}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
-
-#     response = requests.get(url)
-#     response.raise_for_status()  # check for errors
-
-#     recipeData = json.loads(response.text)
-#     r = recipeData["hits"]
-#     for item in r:
-#         recipeName = item["recipe"]["label"]
-#         recipeIngredients = item["recipe"]["ingredients"]
-#         print = str("recipeName")
-#         print = str("recipeIngredients")
-#         for ingredient in recipeIngredients:
-#             print(ingredient)
-
-#     foodItem(r)
-
-#     print(
-#         "Which of the following recipes would you like to use? We will provide nutritional facts for that recipe."
-#     )
-#     chosenRecipe = input()
-
-#     url: f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
-
-
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
 def foodItem(foodList):
     # The while loop allows for people to select more than one food item at once
@@ -171,11 +136,10 @@ def foodItem(foodList):
 
 # this is the main program
 userDineInOrOut = intro()
-
-
 myList = []
 time.sleep(1)
-restaurant()
+restaurant1()
+restaurant2()
 # recipe()
 print("Here are the nutrition facts for the food items you selected:\n")
 time.sleep(2)
@@ -267,3 +231,38 @@ def function2(searchLocation):
 # main program
 userSearchLocation = function1()
 userMapsUrl = function2(userSearchLocation)
+
+
+# def recipe():
+#     while True:
+#         print(
+#             "please enter what food item you would like to cook, and we will provide the recipe"
+#         )
+
+#         recipe = input("recipe name or (q)uit>")
+#         if recipe.lower() == "q":
+#             break
+
+#     url = f"https://api.edamam.com/search?q={recipe}&app_id=62fd6c39&app_key=5f0e27adae50eb576e4aebe320bbefe2"
+
+#     response = requests.get(url)
+#     response.raise_for_status()  # check for errors
+
+#     recipeData = json.loads(response.text)
+#     r = recipeData["hits"]
+#     for item in r:
+#         recipeName = item["recipe"]["label"]
+#         recipeIngredients = item["recipe"]["ingredients"]
+#         print = str("recipeName")
+#         print = str("recipeIngredients")
+#         for ingredient in recipeIngredients:
+#             print(ingredient)
+
+#     foodItem(r)
+
+#     print(
+#         "Which of the following recipes would you like to use? We will provide nutritional facts for that recipe."
+#     )
+#     chosenRecipe = input()
+
+#     url: f"https://api.edamam.com/api/nutrition-details?app_id=2ac3e688&app_key=5f0e27adae50eb576e4aebe320bbefe2"
