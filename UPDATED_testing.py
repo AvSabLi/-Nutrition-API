@@ -2,6 +2,7 @@ import requests, json, sys, time
 from pprint import pprint
 import pandas
 
+
 # This function includes the introduction information for the API
 def intro1():
     print("Welcome to the Nutritionix API Service.")
@@ -54,6 +55,7 @@ def functionA(n):
     return foodItem
 
 
+# print nutrition info for indicated menu item
 def functionB(n, foodItem, myList):
     for item in n:
         if foodItem == item["fields"]["item_name"]:
@@ -314,6 +316,28 @@ def function12(r, chosenRecipeName):
     return recipeProtein
 
 
+# creating dictionary for recipe nutrition info
+def functionRecipeDictionary(
+    recipeProtein,
+    recipeCalories,
+    recipeTotalFat,
+    recipeCholesterol,
+    recipeSugar,
+    chosenRecipeName,
+    recipeNutritionDictionary,
+):
+    recipeNutritionDictionary = {
+        "Item Name: "[chosenRecipeName],
+        "Calories: "[recipeCalories],
+        "Total Fat: "[recipeTotalFat],
+        "Cholesterol: "[recipeCholesterol],
+        "Sugar: "[recipeSugar],
+        "Protein: "[recipeProtein],
+    }
+    myList.append(recipeNutritionDictionary)
+    return myList
+
+
 # print nutrition info
 def function13(
     seeNutritionInfo,
@@ -359,6 +383,8 @@ def function13(
     elif seeNutritionInfo == "no" or seeNutritionInfo == "n":
         print("No problem!")
 
+    pandas.DataFrame(recipeNutritionPandas).to_excel("recipeInfo.xlsx")
+
 
 def closing():
     print("Thank you for using our program. Stay healthy!")
@@ -402,12 +428,23 @@ while exploreAgain == "yes" or exploreAgain == "y":
             function4(userR)
             userChosenRecipeName = function5(userChosenFoodItem)
             function6(userChosenRecipeName, userR)
+            myList = []
+            recipeNutritionDictionary = {}
             userSeeNutritionInfo = function7(userChosenRecipeName)
             userRecipeCalories = function8(userR, userChosenRecipeName)
             userRecipeTotalFat = function9(userR, userChosenRecipeName)
             userRecipeCholesterol = function10(userR, userChosenRecipeName)
             userRecipeSugar = function11(userR, userChosenRecipeName)
             userRecipeProtein = function12(userR, userChosenRecipeName)
+            functionRecipeDictionary(
+                recipeNutritionDictionary,
+                userRecipeProtein,
+                userRecipeCalories,
+                userRecipeTotalFat,
+                userRecipeCholesterol,
+                userRecipeSugar,
+                userChosenRecipeName,
+            )
             function13(
                 userSeeNutritionInfo,
                 userChosenRecipeName,
