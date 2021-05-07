@@ -47,7 +47,7 @@ def intro2(myName):
 def intro3():
     # writer = pandas.ExcelWriter("compareSearches.xlsx", engine="xlsxwriter")
     writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
-        "demo2.xlsx", engine="xlsxwriter"
+        "nutritionalDatabase.xlsx", engine="xlsxwriter"
     )
     writer.save()
 
@@ -73,24 +73,14 @@ def functionB(n, foodItem, myList):
         if foodItem == item["fields"]["item_name"]:
             selectedFood = {
                 "name": item["fields"]["item_name"],
-                "calories": str(item["fields"]["nf_calories"]) + " calories",
-<<<<<<< HEAD
+                "calories": str(item["fields"]["nf_calories"]) + " kcals",
                 # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
                 # + " calories from fat",
-                # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
-                # + " calories from fat",
-                "total fat": str(item["fields"]["nf_total_fat"])
-                + " grams of total fat",
-                # "saturated fat": str(item["fields"]["nf_saturated_fat"])
-                # + " grams of saturated fat",
-=======
-                "calories from fat": str(item["fields"]["nf_calories_from_fat"])
-                + " kcals",
                 # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
                 # + " calories from fat",
                 "total fat": str(item["fields"]["nf_total_fat"]) + " grams",
-                "saturated fat": str(item["fields"]["nf_saturated_fat"]) + " grams",
->>>>>>> d6a584b3ccedb2f373bdfa0d2de38ffd9f302b56
+                # "saturated fat": str(item["fields"]["nf_saturated_fat"])
+                # + " grams of saturated fat",
                 # "saturated fat": str(item["fields"]["nf_saturated_fat"])
                 # + " grams of saturated fat",
                 "cholesterol": str(item["fields"]["nf_cholesterol"]) + " grams",
@@ -100,10 +90,10 @@ def functionB(n, foodItem, myList):
             # this adds the information gathered from selectedFood to a list called myList
             # myList prints all of the food items selected with their corresponding nutritional information after the user quits out of the program
             myList.append(selectedFood)
-    for field in selectedFood:
-        print(
-            selectedFood[field]
-        )  # this print statement will print the nutritional information for the food item selected
+    # for field in selectedFood:
+    #     print(
+    #         selectedFood[field]
+    #     )  # this print statement will print the nutritional information for the food item selected
     return selectedFood, myList
 
 
@@ -144,7 +134,7 @@ def functionE(n):
 
 
 # print pandas table
-def functionF(n, myList, selectedFood):
+def functionF(n, myList, selectedFood, foodItem):
     print("Here are the nutrition facts for the food items you selected:\n")
     time.sleep(2)
     # print("---------------")
@@ -188,25 +178,34 @@ def functionF(n, myList, selectedFood):
         # print(pd.DataFrame(foodData, headerX, headerY)) - REMOVE IF THE OTHER THING WORKS
 
         # add to excel sheet created at beginning of program
-        writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
-            "demo2.xlsx", engine="openpyxl", mode="a"
-        )
-        # try to open an existing workbook
-        writer.book = load_workbook("demo2.xlsx")
-        # # copy existing sheets
-        # writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
-        # read existing file
-        reader = pd.read_excel("demo2.xlsx")
+        # writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
+        #     "demo2.xlsx", engine="openpyxl", mode="a"
+        # )
+        # # try to open an existing workbook
+        # writer.book = load_workbook("demo2.xlsx")
+        # # # copy existing sheets
+        # # writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
+        # # read existing file
+        # reader = pd.read_excel("demo2.xlsx")
         # write out the new sheet, save, and close
-        df.to_excel(
-            writer,
-            "demo2.xlsx",
-            startrow=len(reader) + 1,
-            header=False,
-            index=False,
-        )
-        writer.save()
-        writer.close()
+        # df.to_excel(
+        #     writer,
+        #     # "demo2.xlsx",
+        #     startrow=len(reader) + 1,
+        #     header=False,
+        #     index=False,
+        #     sheet_name="Sheet1",
+        # )
+        # writer.save()
+        # writer.close()
+
+        with pd.ExcelWriter(
+            "nutritionalDatabase.xlsx", engine="openpyxl", mode="a"
+        ) as f:
+            df.to_excel(f, sheet_name=foodItem, index=False, header=False)
+
+
+# append_to_excel(<your_excel_path>, <new_df>, <new_sheet_name>)
 
 
 def functionG(restaurant):
@@ -219,11 +218,13 @@ def functionG(restaurant):
 def functionH(searchLocation, restaurant):
     if searchLocation == "yes" or searchLocation == "y":
         # Fetch the information of that restaurant
-        map_url = f"https://www.google.com/maps/search/?api=1&query={restaurant}"
+        restaurantNew = restaurant.replace(" ", "")
+        map_url = f"https://www.google.com/maps/search/?api=1&query={restaurantNew}"
         # Print message
-        print("To view " + searchLocation + " in Google Maps, go to " + map_url)
+        print("To view " + restaurant + " in Google Maps, go to " + map_url)
         print("-----------------------------------------")
         return map_url
+
     elif searchLocation == "no" or searchLocation == "n":
         pass
 
@@ -432,25 +433,30 @@ def function13(
         # print(pd.DataFrame(foodData, headerX, headerY)) - REMOVE IF THE OTHER THING WORKS
 
         # add to excel sheet created at beginning of program
-        writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
-            "demo2.xlsx", engine="openpyxl", mode="a"
-        )
-        # try to open an existing workbook
-        writer.book = load_workbook("demo2.xlsx")
-        # # copy existing sheets
-        # writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
-        # read existing file
-        reader = pd.read_excel("demo2.xlsx")
-        # write out the new sheet, save, and close
-        df.to_excel(
-            writer,
-            "demo2.xlsx",
-            startrow=len(reader) + 1,
-            header=False,
-            index=False,
-        )
-        writer.save()
-        writer.close()
+        # writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
+        #     "demo2.xlsx", engine="openpyxl", mode="a"
+        # )
+        # # try to open an existing workbook
+        # writer.book = load_workbook("demo2.xlsx")
+        # # # copy existing sheets
+        # # writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
+        # # read existing file
+        # reader = pd.read_excel("demo2.xlsx")
+        # # write out the new sheet, save, and close
+        # df.to_excel(
+        #     writer,
+        #     "demo2.xlsx",
+        #     startrow=len(reader) + 1,
+        #     header=False,
+        #     index=False,
+        # )
+        # writer.save()
+        # writer.close()
+
+        with pd.ExcelWriter(
+            "nutritionalDatabase.xlsx", engine="openpyxl", mode="a"
+        ) as f:
+            df.to_excel(f, sheet_name=chosenRecipeName, index=False, header=False)
 
     elif seeNutritionInfo == "no" or seeNutritionInfo == "n":
         print("No problem!")
@@ -491,7 +497,7 @@ while exploreAgain == "yes" or exploreAgain == "y":
             myList = []
             selectedFood = {}
             functionB(userN, userFoodItem, myList)
-            functionF(userN, myList, selectedFood)
+            functionF(userN, myList, selectedFood, userFoodItem)
             # fix URL
             userSearchLocation = functionG(userRestaurant)
             functionH(userSearchLocation, userRestaurant)
