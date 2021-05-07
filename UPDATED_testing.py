@@ -75,19 +75,16 @@ def functionB(n, foodItem, myList):
                 "name": item["fields"]["item_name"],
                 "calories": str(item["fields"]["nf_calories"]) + " calories",
                 "calories from fat": str(item["fields"]["nf_calories_from_fat"])
-                + " calories from fat",
+                + " kcals",
                 # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
                 # + " calories from fat",
-                "total fat": str(item["fields"]["nf_total_fat"])
-                + " grams of total fat",
-                "saturated fat": str(item["fields"]["nf_saturated_fat"])
-                + " grams of saturated fat",
+                "total fat": str(item["fields"]["nf_total_fat"]) + " grams",
+                "saturated fat": str(item["fields"]["nf_saturated_fat"]) + " grams",
                 # "saturated fat": str(item["fields"]["nf_saturated_fat"])
                 # + " grams of saturated fat",
-                "cholesterol": str(item["fields"]["nf_cholesterol"])
-                + " grams of cholesterol",
-                "sugars": str(item["fields"]["nf_sugars"]) + " grams of sugar",
-                "protein": str(item["fields"]["nf_protein"]) + " grams of protein",
+                "cholesterol": str(item["fields"]["nf_cholesterol"]) + " grams",
+                "sugars": str(item["fields"]["nf_sugars"]) + " grams",
+                "protein": str(item["fields"]["nf_protein"]) + " grams",
             }
             # this adds the information gathered from selectedFood to a list called myList
             # myList prints all of the food items selected with their corresponding nutritional information after the user quits out of the program
@@ -389,11 +386,11 @@ def function13(
     if seeNutritionInfo == "yes" or seeNutritionInfo == "y":
         recipeNutritionPandas = [
             ["Item Name:", chosenRecipeName],
-            ["Calories:", recipeCalories],
-            ["Total Fat:", recipeTotalFat],
-            ["Cholesterol:", recipeCholesterol],
-            ["Sugar:", recipeSugar],
-            ["Protein:", recipeProtein],
+            ["Calories:", recipeCalories + " kcals"],
+            ["Total Fat:", recipeTotalFat + " grams"],
+            ["Cholesterol:", recipeCholesterol + " grams"],
+            ["Sugar:", recipeSugar + " grams"],
+            ["Protein:", recipeProtein + " grams"],
         ]
         # columns
         headerY = [
