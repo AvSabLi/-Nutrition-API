@@ -417,7 +417,7 @@ def function13(
             # "  ",
             # "  ",
         ]
-        print(pd.DataFrame(recipeNutritionPandas, headerX, headerY))
+        # print(pd.DataFrame(recipeNutritionPandas, headerX, headerY))
 
         df = pd.DataFrame(recipeNutritionPandas, headerX, headerY)
         print(df)
@@ -425,16 +425,23 @@ def function13(
 
         # add to excel sheet created at beginning of program
         writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
-            "demo2.xlsx", engine="openpyxl"
+            "demo2.xlsx", engine="openpyxl", mode="a"
         )
         # try to open an existing workbook
         writer.book = load_workbook("demo2.xlsx")
-        # copy existing sheets
-        writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
+        # # copy existing sheets
+        # writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
         # read existing file
-        reader = pd.read_excel(r"demo2.xlsx")
-        # write out the new sheet
-        df.to_excel(writer, index=False, header=False, startrow=len(reader) + 1)
+        reader = pd.read_excel("demo2.xlsx")
+        # write out the new sheet, save, and close
+        df.to_excel(
+            writer,
+            "demo2.xlsx",
+            startrow=len(reader) + 1,
+            header=False,
+            index=False,
+        )
+        writer.save()
         writer.close()
 
     elif seeNutritionInfo == "no" or seeNutritionInfo == "n":
