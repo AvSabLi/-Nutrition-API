@@ -1,6 +1,9 @@
 import requests, json, sys, time
 from pprint import pprint
-import pandas
+import pandas as pd
+import xlsxwriter
+import xlrd
+from openpyxl import load_workbook
 
 
 # This function includes the introduction information for the API
@@ -38,6 +41,15 @@ def intro2(myName):
     dineInOrOut = input()
     print("---------------")
     return dineInOrOut
+
+
+# print empty excel called compareSearches
+def intro3():
+    # writer = pandas.ExcelWriter("compareSearches.xlsx", engine="xlsxwriter")
+    writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
+        "demo2.xlsx", engine="xlsxwriter"
+    )
+    writer.save()
 
 
 # This function asks for a food item that the restaurant selected has and outputs nutrition information
@@ -84,7 +96,7 @@ def functionB(n, foodItem, myList):
         print(
             selectedFood[field]
         )  # this print statement will print the nutritional information for the food item selected
-    return selectedFood
+    return selectedFood, myList
 
 
 # need to ask if dine in or eat out with related code
@@ -163,7 +175,30 @@ def functionF(n, myList, selectedFood):
             # "  ",
             # "  ",
         ]
-        print(pandas.DataFrame(foodData, headerX, headerY))
+        df = pd.DataFrame(foodData, headerX, headerY)
+        print(df)
+        # print(pd.DataFrame(foodData, headerX, headerY)) - REMOVE IF THE OTHER THING WORKS
+
+        # add to excel sheet created at beginning of program
+        writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
+            "demo2.xlsx", engine="openpyxl", mode="a"
+        )
+        # try to open an existing workbook
+        writer.book = load_workbook("demo2.xlsx")
+        # # copy existing sheets
+        # writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
+        # read existing file
+        reader = pd.read_excel("demo2.xlsx")
+        # write out the new sheet, save, and close
+        df.to_excel(
+            writer,
+            "demo2.xlsx",
+            startrow=len(reader) + 1,
+            header=False,
+            index=False,
+        )
+        writer.save()
+        writer.close()
 
 
 def functionG(restaurant):
@@ -318,24 +353,27 @@ def function12(r, chosenRecipeName):
 
 # creating dictionary for recipe nutrition info
 def functionRecipeDictionary(
-    recipeProtein,
+    chosenRecipeName,
     recipeCalories,
     recipeTotalFat,
     recipeCholesterol,
     recipeSugar,
-    chosenRecipeName,
+    recipeProtein,
     recipeNutritionDictionary,
+    r,
 ):
-    recipeNutritionDictionary = {
-        "Item Name: "[chosenRecipeName],
-        "Calories: "[recipeCalories],
-        "Total Fat: "[recipeTotalFat],
-        "Cholesterol: "[recipeCholesterol],
-        "Sugar: "[recipeSugar],
-        "Protein: "[recipeProtein],
-    }
-    myList.append(recipeNutritionDictionary)
-    return myList
+    for item in r:
+        if chosenRecipeName == item["recipe"]["label"]:
+            recipeNutritionDictionary = {
+                "Item Name: ": chosenRecipeName,
+                "Calories: ": recipeCalories,
+                "Total Fat: ": recipeTotalFat,
+                "Cholesterol: ": recipeCholesterol,
+                "Sugar: ": recipeSugar,
+                "Protein: ": item["recipe"]["totalNutrients"]["PROCNT"]["quantity"],
+            }
+            myList.append(recipeNutritionDictionary)
+            return myList, recipeNutritionDictionary
 
 
 # print nutrition info
@@ -379,22 +417,51 @@ def function13(
             # "  ",
             # "  ",
         ]
-        print(pandas.DataFrame(recipeNutritionPandas, headerX, headerY))
+        print(pd.DataFrame(recipeNutritionPandas, headerX, headerY))
+
+        df = pd.DataFrame(recipeNutritionPandas, headerX, headerY)
+        print(df)
+        # print(pd.DataFrame(foodData, headerX, headerY)) - REMOVE IF THE OTHER THING WORKS
+
+        # add to excel sheet created at beginning of program
+        writer = pd.ExcelWriter(  # https://github.com/PyCQA/pylint/issues/3060 pylint: disable=abstract-class-instantiated
+            "demo2.xlsx", engine="openpyxl"
+        )
+        # try to open an existing workbook
+        writer.book = load_workbook("demo2.xlsx")
+        # copy existing sheets
+        writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
+        # read existing file
+        reader = pd.read_excel(r"demo2.xlsx")
+        # write out the new sheet
+        df.to_excel(writer, index=False, header=False, startrow=len(reader) + 1)
+        writer.close()
+
     elif seeNutritionInfo == "no" or seeNutritionInfo == "n":
         print("No problem!")
 
-    pandas.DataFrame(recipeNutritionPandas).to_excel("recipeInfo.xlsx")
+    # pandas.DataFrame(recipeNutritionPandas).to_excel("recipeInfo.xlsx")
 
 
-def closing():
+# def pandasComparison(myList):
+#     print("Here is an excel of all the nutrition data you've viewed so far.")
+#     pandas.DataFrame(myList).to_excel("finalExcel.xlsx")
+
+
+def closing(myList):
     print("Thank you for using our program. Stay healthy!")
+    print(
+        "Be sure to view the excel sheet titled 'compareSearches' to see all the nutrition data for your searches!"
+    )
 
 
 # main function
 userMyName = intro1()
+intro3()
 exploreAgain = "yes" or "y"
 while exploreAgain == "yes" or exploreAgain == "y":
     userDineInorOut = intro2(userMyName)
+    # mylist = []
     if (
         userDineInorOut == "out"
         or userDineInorOut == "dine out"
@@ -428,7 +495,7 @@ while exploreAgain == "yes" or exploreAgain == "y":
             function4(userR)
             userChosenRecipeName = function5(userChosenFoodItem)
             function6(userChosenRecipeName, userR)
-            myList = []
+            # myList = []
             recipeNutritionDictionary = {}
             userSeeNutritionInfo = function7(userChosenRecipeName)
             userRecipeCalories = function8(userR, userChosenRecipeName)
@@ -444,6 +511,7 @@ while exploreAgain == "yes" or exploreAgain == "y":
                 userRecipeCholesterol,
                 userRecipeSugar,
                 userChosenRecipeName,
+                userR,
             )
             function13(
                 userSeeNutritionInfo,
@@ -458,4 +526,4 @@ while exploreAgain == "yes" or exploreAgain == "y":
             exploreRecipe = input()
     print("Do you want to explore more dining options?")
     exploreAgain = input()
-closing()
+closing(myList)
