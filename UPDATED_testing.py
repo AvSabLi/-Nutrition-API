@@ -74,14 +74,14 @@ def functionB(n, foodItem, myList):
             selectedFood = {
                 "name": item["fields"]["item_name"],
                 "calories": str(item["fields"]["nf_calories"]) + " calories",
-                "calories from fat": str(item["fields"]["nf_calories_from_fat"])
-                + " calories from fat",
+                # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
+                # + " calories from fat",
                 # "calories from fat": str(item["fields"]["nf_calories_from_fat"])
                 # + " calories from fat",
                 "total fat": str(item["fields"]["nf_total_fat"])
                 + " grams of total fat",
-                "saturated fat": str(item["fields"]["nf_saturated_fat"])
-                + " grams of saturated fat",
+                # "saturated fat": str(item["fields"]["nf_saturated_fat"])
+                # + " grams of saturated fat",
                 # "saturated fat": str(item["fields"]["nf_saturated_fat"])
                 # + " grams of saturated fat",
                 "cholesterol": str(item["fields"]["nf_cholesterol"])
