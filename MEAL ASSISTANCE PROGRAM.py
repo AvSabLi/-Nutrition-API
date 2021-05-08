@@ -8,7 +8,7 @@ from openpyxl import load_workbook
 
 # This function includes the introduction information for the API
 def intro1():
-    print("Welcome to our Nutrition API Service.")
+    print("Welcome to our Meal Assistance Program.")
     time.sleep(1)  # time.sleep adds time before the next line of code is printed
     print("What is your name?")
     myName = input()
